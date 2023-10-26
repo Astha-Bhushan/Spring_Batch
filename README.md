@@ -16,11 +16,15 @@ It is a light-weight batch framework based on spring. It is used to do batch pro
   There are two types of steps :
 •	Tasklet Step
 •	Chunk oriented Step
+
 Chunk means how many records at a time we want to process in a step from the available data. Chunk oriented steps  have three steps :
 ItemReader -> ItemProcessor(optional) -> ItemWriter
-o	Item reader reads data into a Spring Batch application from a particular source
+
+o	Item reader reads data into a Spring Batch application from a particular source.
+
 o	An Item processor is a class which contains the processing code which processes the data read into the spring batch. If the application reads "n" records, then the code in the processor will be executed on each record.
-o	an Item writer writes data from the Spring Batch application to a particular destination.
+
+o	An Item writer writes data from the Spring Batch application to a particular destination.
 
 ## Different Types Of ItemReaders
 
