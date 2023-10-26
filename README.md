@@ -33,16 +33,16 @@ o	an Item writer writes data from the Spring Batch application to a particular d
 -	It uses RowMapper. RowMapper is a callback interface used by jdbcTemplate’s query methods to process the ResultSet.
 
 3.3	 JsonItemReader
--     The JsonItemReader delegates JSON parsing and binding to implementation of the 
-       org.springframework.batch.item.json.JsonObjectReader  interface. This interface is
-       intended to be implemented by using a streaming API to read JSON objects in chunks
--      To be able to process JSON records, the following is needed:
-•	Resource: A Spring Resource that represents the JSON file to read.
-•	JsonObjectReader: A JSON object reader to parse and bind JSON objects to items
+- The JsonItemReader delegates JSON parsing and binding to implementation of the org.springframework.batch.item.json.JsonObjectReader  interface.
+- This interface is intended to be implemented by using a streaming API to read JSON objects in chunks
+- To be able to process JSON records, the following is needed:
+
+  Resource: A Spring Resource that represents the JSON file to read.
+
+  JsonObjectReader: A JSON object reader to parse and bind JSON objects to items
 
 3.4	 ItemReaderAdapter
--     Invokes a custom method on a delegate plain old Java object which itself provides 
-       an item. It is useful when we have read data from rest api .
+- Invokes a custom method on a delegate plain old Java object which itself provides an item. It is useful when we have read data from rest api.
 
 3.5	 StaxEventItemReader
 -	The StaxEventItemReader configuration provides a typical setup for the processing of records from an XML input stream.
@@ -56,15 +56,16 @@ o	an Item writer writes data from the Spring Batch application to a particular d
 
 4.1	FlatFileItemWriter
 -	A step must be able to write either delimited or fixed length formats in a transactional manner.
--	Here instead of LineTokenizer we use LineAggregator. Just as the LineTokenizer interface is necessary to take an item and turn it into a String, filw writing must have a way to aggregate multiple fields into a single string for writing to a file. 
+-	Here instead of LineTokenizer we use LineAggregator. Just as the LineTokenizer interface is necessary to take an item and turn it into a String, file writing must have a way to aggregate multiple fields into a single string for writing to a file. 
 4.2	ItemWriterAdapter
 -  There are cases where the existing service needs to act as an ItemReader or ItemWriter, either to satisfy the dependency of another Spring Batch class or because it truly is the main ItemReader for a step. It is fairly trivial to write an adapter class for each service that needs wrapping, but because it is such a common concern.
--     Spring Batch provides implementations: ItemReaderAdapter and ItemWriterAdapter. Both classes implement the standard Spring method by invoking the delegate pattern and are fairly simple to set up.
+- Spring Batch provides implementations: ItemReaderAdapter and ItemWriterAdapter. Both classes implement the standard Spring method by invoking the delegate pattern and are fairly simple to set up.
 
 
 4.3	JdbcBatchItemWriter
--	  The writer is thread-safe after its properties are set (normal singleton behavior), so it can be used to write in multiple concurrent transactions. ItemWriter that uses the batching features from NamedParameterJdbcTemplate to execute a batch of statements for all items provided. 
+-	The writer is thread-safe after its properties are set (normal singleton behavior), so it can be used to write in multiple concurrent transactions. ItemWriter that uses the batching features from NamedParameterJdbcTemplate to execute a batch of statements for all items provided. 
 -	The user must provide an SQL query and a special callback for either of ItemPreparedStatementSetter or ItemSqlParameterSourceProvider
+
 4.4	 JsonItemWriter
 -	The JsonFileItemWriter delegates the marshalling of items to the org.springframework.batch.item.json.JsonObjectMarshaller interface. The contract of this interface is to take an object and marshall it to a JSON String.
 
@@ -78,7 +79,7 @@ Fault tolerance is a process that enables an application to respond to failure.
 Fault tolerance is very important in spring batch as it deals with large amount of data and failing of one single record can hamper whole application .
 Batch processes typically interact with other services (such as databases, messages brokers, web services, and others) which make fault tolerance even more important.
 
-5.1. Skip policy 
+### Skip policy 
 
 Any errors encountered during a Spring batch job processing will make a corresponding step fail. However, there are many situations where we'd rather like to skip the currently processed item for certain exceptions. 
 
@@ -97,7 +98,7 @@ Also we can catch bad records
 o	By Using annotations - @OnSkipInRead , @OnSkipInProcess , @OnSkipInWrite
 o	By Using SkipListener Interface
 
-5.2. Retry mechanism
+### Retry mechanism
 
 It is not always our data that is causing some issues , sometimes it may be the business into which we are writing that is having some issue .In such cases we use retry mechanism.
 
