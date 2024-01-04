@@ -99,15 +99,15 @@ In some situations, it is more appropriate to identify exceptions that should ma
 It allows us to  provide our own implementation of skip logic and plug it into our step definition.
 
 Also we can catch bad records
-o	By Using annotations - @OnSkipInRead , @OnSkipInProcess , @OnSkipInWrite
-o	By Using SkipListener Interface
+1. By Using annotations - @OnSkipInRead , @OnSkipInProcess , @OnSkipInWrite
+2. By Using SkipListener Interface
 
 ### Retry mechanism
 
-It is not always our data that is causing some issues , sometimes it may be the business into which we are writing that is having some issue .In such cases we use retry mechanism.
+It is not always our data that is causing some issues, sometimes it may be the business into which we are writing that have some issues. In such cases we use retry mechanism.
 
-Retry mechanism is only applicable for item processor and item writer . It is not applicable for item reader.
-o	We use retry and retryLimit to define the exceptions that qualify for a retry and the maximum retry count for an item, respectively.
+Retry mechanism is only applicable for item processor and item writer. It is not applicable for item reader.
+We use retry and retryLimit to define the exceptions that qualify for a retry and the maximum retry count for an item, respectively.
  
 
 
